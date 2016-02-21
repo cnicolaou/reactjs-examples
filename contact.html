@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>A Product Hunt client app</title>
+  </head>
+  <body>
+    <div id="react-app"></div>
+
+    <script src="https://cdn.jsdelivr.net/react/0.14.0-rc1/react.js"></script>
+    <script src="https://cdn.jsdelivr.net/react/0.14.0-rc1/react-dom.js"></script>
+  </body>
+  <script>
+    var contacts = [
+      {key: 1, name: "Constantine Nicolaou", email: "cnicolaou@example.com"},
+      {key: 2, name: "Samira Yalla"},
+      {key: 3, name: "Good Deeds", email: "good@example.com"}
+    ]
+
+    var listElements = contacts
+      .filter(function(contact) {return contact.email; })
+      .map(function(contact) {
+        return React.createElement('li', {key: contact.key},
+          React.createElement('h2', {}, contact.name),
+          React.createElement('a', {href: 'mailto'+contact.email}, contact.email)
+      )
+    })
+
+    var rootElement =
+      React.createElement('div', {},
+        React.createElement('h1', {}, "Contacts"),
+        React.createElement('ul', {}, listElements)
+    )
+
+    ReactDOM.render(rootElement, document.getElementById('react-app'))
+  </script>
+</html>
