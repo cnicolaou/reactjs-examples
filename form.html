@@ -21,10 +21,10 @@
 
     render: function(){
       return (
-        React.createElement('li', {classname: 'Contact'},
-          React.createElement('h2', {classname: 'ContactItem-name'}, this.props.name),
-          React.createElement('a', {classname: 'ContactItem-email', href: 'mailto:'+this.props.email}, this.props.email),
-          React.createElement('div', {classname: 'ContactItem-description'}, this.props.description)
+        React.createElement('li', {className: 'Contact'},
+          React.createElement('h2', {className: 'ContactItem-name'}, this.props.name),
+          React.createElement('a', {className: 'ContactItem-email', href: 'mailto:'+this.props.email}, this.props.email),
+          React.createElement('div', {className: 'ContactItem-description'}, this.props.description)
         )
       )
     },
@@ -37,7 +37,7 @@
 
     render: function(){
       return (
-        React.createElement('form', {},
+        React.createElement('form', {className: 'ContactForm'},
           React.createElement('input', {
             type: 'text',
             placeholder: 'Name (required)',
@@ -55,13 +55,13 @@
           React.createElement('button', {type: 'submit'}, "Add contact")
         )
       )
-    }
+    },
   })
 
   var ContactView = React.createClass({
     propTypes: {
       contacts: React.PropTypes.array.isRequired,
-      newContact: React.PropTypes.string.isRequired,
+      newContact: React.PropTypes.object.isRequired,
     },
 
     render: function() {
@@ -69,11 +69,12 @@
         .filter( function(contact) { return contact.email })
         .map(function(contact) { return React.createElement(ContactItem, contact) })
 
-      var rootElement =
-        React.createElement('div', {},
-          React.createElement('h1', {}, "Contacts"),
-          React.createElement('ul', {}, contactItemElements),
+      return (
+        React.createElement('div', {className: 'ContactView'},
+          React.createElement('h1', {className: 'ContactView-title'}, "Contacts"),
+          React.createElement('ul', {className: 'ContactView-list'}, contactItemElements),
           React.createElement(ContactForm, {contact: newContact})
+        )
       )
     },
   })
